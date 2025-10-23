@@ -1,0 +1,17 @@
+/* this is the formatting for the body section of the HTML. It will apply to everything in the body*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* this is the formatting for the div that we named container*/
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

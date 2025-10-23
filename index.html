@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--The next line is the title of the page that is displated on top-->
+        <title>Password Generator</title>
+        <!--The line below is what points the html file to the css file for styling. You want this first so the css loads before the data-->
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Password Generator</h1>
+            <div class="password-display"?>
+                <input type="text" id="passwordOutput" readonly>
+                <button id="copyButton">Copy</button>
+            </div>
+            <!--This section is going to give you the options check boxes-->
+            <div class="options">
+                <h2>Options</h2>
+                <!--This is the first option to include Uppercase letters. "checked" will default the check box is checked-->
+                <div class="option">
+                    <label>
+                        <input type="checkbox" id="includeUppercase" checked>
+                        Include Uppercase Letters
+                    </label>
+                </div>
+                <!--This is the second option to include Lowercase letters "checked" will default the check box is checked-->
+                <div class="option">
+                    <label>
+                        <input type="checkbox" id="includeLowercase" checked>
+                        Include Lowercase Letters
+                    </label>
+                </div>
+                <!--This is the thrid option to include Numbers "checked" will default the check box is checked-->
+                <div class="option">
+                    <label>
+                        <input type="checkbox" id="includeNumbers" checked>
+                        Include Numbers
+                    </label>
+                </div>
+                <!--This is the fourth option to include Symbols-->
+                <div class="option">
+                    <label>
+                        <input type="checkbox" id="includeSymbols">
+                        Include Symbols (!@#$%^&*)
+                    </label>
+                </div>
+                <!--This next section is what dictates the password length-->
+                <div class="option">
+                    <label for="passwordLength">Password Length:</label>
+                    <input type="number" id="passwordLength" id="passwordLength" min="4" max="32" value="12">
+                </div>
+            </div>
+            <!--This next line is the generate password button-->
+            <button id="generateButton">Generate Password</button>
+        </div>
+        <!--The next line is where you tell the HTML file to get the java scripts from.-->
+        <script src="script.js">
+        </script>
+    </body>
+</html>
