@@ -7,12 +7,15 @@ const includeLowercase = document.getElementById('includeLowercase');
 const includeNumbers = document.getElementById('includeNumbers');
 const includeSymbols = document.getElementById('includeSymbols');
 const passwordLength = document.getElementById('passwordLength');
+const arialFont = document.getElementById('arialRadio')
+const impactFont = document.getElementById('impactRadio');
+const verdanaFont = document.getElementById('verdanaRadio');
 
 // This will define the character sets for the password generation
 const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
 const numberChars = '0123456789';
-const symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+const symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?'; 
 
 //This function will generate the password depending on selections made
 function generatePassword() {
@@ -46,8 +49,29 @@ function generatePassword() {
     }
 
     passwordOutput.value = password;
-
 }
+
+//This function is for the radio button check and css change
+//function fontSelect() {
+arialFont.addEventListener('click', function() {
+    if (arialFont.checked) {
+    passwordOutput.classList.remove('font-serif', 'font-impact', 'font-verdana');
+    passwordOutput.classList.add('font-arial');
+    }
+});
+impactFont.addEventListener('click', function() {
+    if (impactFont.checked) {
+    passwordOutput.classList.remove('font-serif', 'font-verdana', 'font-arial');
+    passwordOutput.classList.add('font-impact');
+    }
+});
+verdanaFont.addEventListener('click', function() {
+    if (verdanaFont.checked) {
+    passwordOutput.classList.remove('font-serif', 'font-arial', 'font-impact');
+    passwordOutput.classList.add('font-verdana');
+    }
+});
+//};
 // Listen for button clicks
 generateButton.addEventListener('click', generatePassword);
 

@@ -9,54 +9,61 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <!--This is where the box starts. Everything we want in the box needs to be nested in to this one.-->
         <div class="container">
             <h1>Password Generator</h1>
-            <div class="password-display"?>
-                <input type="text" id="passwordOutput" readonly>
+            <div class="password-display">
+                <input type="text" id="passwordOutput" class="font-serif" readonly>
                 <button id="copyButton">Copy</button>
             </div>
-            <!--This section is going to give you the options check boxes-->
+            <!--Each Option will select different font and is limited to one option using the name variable to group these together-->
             <div class="options">
-                <h2>Options</h2>
-                <!--This is the first option to include Uppercase letters. "checked" will default the check box is checked-->
+                <h2>Font Style</h2>
                 <div class="option">
+                    <label>
+                        <input type="radio" name="Font" id="arialRadio" class="font-arial">
+                        Ariel
+                        <input type="radio" name="Font" id="impactRadio" class="font-impact">
+                        Impact
+                        <input type="radio" name="Font" id="verdanaRadio" class="font-verdana">
+                        Verdana
+                    </label>
+                </div>
+                <h2>Options</h2>
+                <div class="option">
+                    <!--First Option. Checked by default.-->
                     <label>
                         <input type="checkbox" id="includeUppercase" checked>
                         Include Uppercase Letters
                     </label>
-                </div>
-                <!--This is the second option to include Lowercase letters "checked" will default the check box is checked-->
-                <div class="option">
+                    <br>
+                    <!--Second Option. Checked by default.-->
                     <label>
                         <input type="checkbox" id="includeLowercase" checked>
                         Include Lowercase Letters
                     </label>
-                </div>
-                <!--This is the thrid option to include Numbers "checked" will default the check box is checked-->
-                <div class="option">
+                     <br>
+                    <!--Third Option. Checked by default.-->
                     <label>
                         <input type="checkbox" id="includeNumbers" checked>
                         Include Numbers
                     </label>
-                </div>
-                <!--This is the fourth option to include Symbols-->
-                <div class="option">
+                     <br>
+                    <!--Fourth Option. Checked by default.-->
                     <label>
                         <input type="checkbox" id="includeSymbols">
                         Include Symbols (!@#$%^&*)
                     </label>
-                </div>
-                <!--This next section is what dictates the password length-->
-                <div class="option">
+                     <br>
+                    <!--This next section is what dictates the password length-->
                     <label for="passwordLength">Password Length:</label>
-                    <input type="number" id="passwordLength" id="passwordLength" min="4" max="32" value="12">
+                    <input type="number" id="passwordLength" min="4" max="32" value="12">
                 </div>
             </div>
             <!--This next line is the generate password button-->
             <button id="generateButton">Generate Password</button>
         </div>
         <!--The next line is where you tell the HTML file to get the java scripts from.-->
-        <script src="script.js">
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>

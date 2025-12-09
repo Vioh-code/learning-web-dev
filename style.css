@@ -33,15 +33,31 @@ h2{
     gap: 10px;
     margin-bottom: 30px;
 }
-
+/* Default Output Style*/
 #passwordOutput {
     flex: 1;
-    padding: 12px;
+    padding:12px;
     font-size: 12 px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
+    border:2px solid #ddd;
+    border-radius:5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size:14px;
+}
+
+.font-serif {
+    font-family: Serif;
+}
+
+.font-arial {
+    font-family: Arial;
+}
+
+.font-impact {
+    font-family: Impact;
+}
+
+.font-verdana {
+    font-family: Verdana;
 }
 
 #copyButton:hover {
