@@ -52,7 +52,7 @@ function generatePassword() {
 }
 
 //This function is for the radio button check and css change
-//function fontSelect() {
+
 arialFont.addEventListener('click', function() {
     if (arialFont.checked) {
     passwordOutput.classList.remove('font-serif', 'font-impact', 'font-verdana');
@@ -71,7 +71,7 @@ verdanaFont.addEventListener('click', function() {
     passwordOutput.classList.add('font-verdana');
     }
 });
-//};
+
 // Listen for button clicks
 generateButton.addEventListener('click', generatePassword);
 
