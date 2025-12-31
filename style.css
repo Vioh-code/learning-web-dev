@@ -30,11 +30,16 @@ h2{
 }
 
 .password-display {
-    display: inline-block;
+    display: block;
     gap: 10px;
     margin-bottom: 30px;
     margin-top: 30px;
-    max-width: fit-content;
+    width: 100%;
+}
+
+.password-display input {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .drop-down {
@@ -73,6 +78,10 @@ h2{
     margin: 10px;
     display: block;
     margin-bottom: 10px;
+}
+
+.pass-phra input[type="checkbox"] {
+    margin-left: 45px;
 }
 
 .comb-lock {
@@ -142,16 +151,6 @@ h2{
     font-size:14px;
 }
 
-#randomOutput {
-    flex: 1;
-    padding:12px;
-    font-size: 12 px;
-    border:2px solid #ddd;
-    border-radius:5px;
-    cursor: pointer;
-    font-size:14px;
-}
-
 #passOutput {
     flex: 1;
     padding:12px;
@@ -185,4 +184,8 @@ h2{
 
 #passSym {
     margin-top: 30px;
+}
+
+#numbWords {
+    margin-left: 30px;
 }

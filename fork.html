@@ -20,67 +20,37 @@
             <div class = "drop-down">
                 <select  id="dropDown">
                     <option selected>Select One</option>
-                    <option>Pin Code</option>
                     <option>Random Characters</option>
                     <option>Passphrase</option>
-                    <option>Combination Lock</option>
                 </select>
-            </div>
-            <!--Pin code Options-->
-            <div class="pin-code">
-                <!--Pin Code Radio Buttons-->
-                <div class="radio-button" id="radButt">
-                    <label><input type="radio" id="fourDigit" name="pinLength">4 Digits</label>
-                    <label><input type="radio" id="sixDigit" name="pinLength">6 Digits</label>
-                </div>
-                <!--Pin code Check Boxes-->
-                <div class="check-box" id="checkBox">
-                    <label><input type="checkbox" id="numPin">Numbers</label>
-                    <label><input type="checkbox" id="letPin">Letters</label>
-                    <label><input type="checkbox" id="symPin">Symbols</label>
-                </div>
-                <!--Password Display Field-->
-                <div class="password-display">
-                    <input type="text" id="passwordOutput" readonly>
-                    <button id="copyButton">Copy</button>
-                </div>
             </div>
             <!--Random Character Option-->
             <div class="rand-char">
                 <label>Password Length <input type="text" min="8" max="64" value="12" id="passwordLength"></label>
-
                 <label><input type="checkbox" id="numRan">Numbers</label>
                 <label><input type="checkbox" id="letRan">Letters</label>
                 <label><input type="checkbox" id="symRan">Symbols</label>
             <div class="password-display">
-                <input type="text" id="randomOutput" readonly>
-                <button id="randomButton">Copy</button>
+                <input type="text" id="passwordOutput" readonly>
+                <br>
+                <button id="copyButton">Copy</button>
             </div>
             </div>
             <!--Passphrase Option-->
             <div class="pass-phra">
-                <h5>How many words?</h3>
+                <label>How many words?
                 <select id="numbWords">
-                    <option selected>2</option>
+                    <option>2</option>
                     <option selected>3</option>
-                    <option selected>4</option>
-                    <option selected>5</option>
-                </select>
+                    <option>4</option>
+                    <option>5</option>
+                </select></label>
                 <br>
-                <label><input type="checkbox" id="passSym">Include Symbols?</label>
-                <label><input type="checkbox" id="passNum">Include Numbers?</label>
-            <div class="password-display">
-                <input type="text" id="passOutput" readonly>
-                <button id="passButton">Copy</button>
-            </div>
-            </div>
-            <!--Combination Lock-->
-            <div class="comb-lock">
-                <label>Combination
-                    <span id="combo1" class="combo-box"> 00 </span>
-                    <span id="combo2" class="combo-box"> 00 </span>
-                    <span id="combo3" class="combo-box"> 00 </span>
-                </label>
+                <label>Include Numbers<input type="checkbox" id="passNum"></label>
+                <div class="password-display">
+                    <input type="text" id="passphraseOutput" readonly>
+                    <button id="passButton">Copy</button>
+                </div>
             </div>
         <!--Password Gen button-->
         <button id="generateButton">Generate Password</button>
