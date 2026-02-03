@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vioh's Generator</title>
+        <link rel="stylesheet" href="oopstyle.css">
+    </head>
+    <body>
+        <main>
+            <h1>Generator of Passwords</h1>
+            <form>
+                <select name="type" id="type" class="select">
+                    <option value="">Choose Wisely</option>
+                    <option value="password">Password</option>
+                    <option value="passphrase">Passphrase</option>
+                </select>
+                <fieldset id= 'fieldCont' class="inputs hidden">
+                    <div id= 'numbCont' class="numbers hidden">
+                        <label for="numbers">Numbers</label>
+                        <input type="checkbox" id="numbers" name="numbers">
+                    </div>
+                    <div id = 'lettCont' class="letters hidden">
+                        <label for="letters">Letters</label>
+                        <input type="checkbox" id="letters" name="letters">
+                    </div>
+                    <div id= 'symbCont' class="symbols hidden">
+                        <label for="symbols">Symbols</label>
+                        <input type="checkbox" id="symbols" name="symbols">
+                    </div>
+                    <div id ='charCont' class="charLength hidden">
+                        <label for="charLength">Character Length</label>
+                        <input type="number" min="12" max="64" value="12" step="1" id="charLength" name="charLength">
+                    </div>
+                    <div id = 'phraCont' class="wordCount hidden">
+                        <label for="wordSlider">
+                            How many words?
+                        </label>
+                        <input type="range" min="2" max="10" value="2" id="wordSlider" name="wordSlider">
+                        <span id="wordCount">2</span>
+                    </div>
+                </fieldset>
+                <section id="copyCont" class="output hidden">
+                    <input type="text" class="passwordOutput" value="Keep it secret. Keep it safe." readonly>
+                    <button type="button" class="copyButton" id="copyButton">Copy</button>
+                </section>
+                <section id="genCont" class="genButton hidden">
+                    <button type=button id="submit">Generate Password</button>
+                </section>
+            </form>
+        </main>
+        <script src="oopscript.js"></script>
+    </body>
+</html>
