@@ -24,10 +24,12 @@ const elementVis = {
     'password':  [genCont, copyCont, fieldCont, numbCont, lettCont, symbCont, charCont],
     'passphrase':  [genCont, copyCont, fieldCont, numbCont, symbCont, phraCont]
 };
-//All settings are listed here so that we can show or hide them based on selection of drop down.
+//All settings are listed here so that we can show or hide them based on
+//selection of drop down.
 const allOptions =  [genCont, copyCont, fieldCont, numbCont, lettCont, symbCont, charCont, phraCont];
 
-//Function to watch drop down and update the elements classes with "hidden" based on selection made to only show the applicable options.
+//Function to watch drop down and update the elements classes with "hidden"
+//based on selection made to only show the applicable options.
 type.addEventListener('change', function () {
     allOptions.forEach(vis => vis.classList.add('hidden'));
 
@@ -40,7 +42,8 @@ wordSlider.addEventListener('input', function() {
     wordCount.textContent = wordSlider.value;
 });
 
-//getOptions is used to check all of the options that have been selected after the drop down has been selected. 
+//getOptions is used to check all of the options that have been selected after
+//the drop down has been selected. 
 function getOptions() {
     const selectedType = type.value;
     const numbCheck = numbers.checked;
@@ -89,7 +92,8 @@ submit.addEventListener('click', function() {
 });
 
 
-//Here is the function that will actually generate the password. We are still missing alot here. Most of this was pulled from my other version.
+//Here is the function that will actually generate the password. We are still
+//missing alot here. Most of this was pulled from my other version.
 function generatePass() {
     let password = '';
     const options = getOptions();
