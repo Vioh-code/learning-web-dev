@@ -52,20 +52,20 @@ function getOptions() {
     if (selectedType == '') {
         return {error: 'Please select a password type' };
     };
-// Checks the settings if Password is selected and returns those options
+    // Checks the settings if Password is selected and returns those options
     if (selectedType == 'password') {
         if (!numbCheck && !lettCheck && !symbCheck) {
             return { error: 'Please select at least one character type' };
         }
-            return {
+        return {
             type: selectedType,
             numbers: numbCheck,
             letters: lettCheck,
             symbols: symbCheck,
             length: charLength.value
-    };
-// Checks the settings if Passphrase is selected and returns those options 
-    }else if (selectedType == 'passphrase') {
+        };
+        // Checks the settings if Passphrase is selected and returns those options 
+    } else if (selectedType == 'passphrase') {
         if (!numbCheck && !symbCheck) {
             return { error: 'Please select at least one character type as a separator' };
         }
@@ -87,7 +87,10 @@ submit.addEventListener('click', function() {
         //if no errors are found, then it will output the options selected.
     } else {
         console.log('Valid options:', options);
-        generatePass();
+        // get the password text box
+        const input = document.querySelector('.passwordOutput');
+        // update it's value with a new generated password
+        input.value = generatePass();
     }
 });
 
@@ -95,25 +98,34 @@ submit.addEventListener('click', function() {
 function generatePass() {
     const options = getOptions();
     let password = '';
-    //Weight variables for each array. The '?' is a short hand for if/else. EG:
-    //numbers: options.numbers ? 1 : 0 can be read as If options.number is true
-    //set value 1 or if false set 0
-    let weights = {
-        numbers: options.numbers ? 1 : 0,
-        letters: options.letters ? 1 : 0,
-        symbols: options.symbols ? 1 : 0
-    };
     // for loop to generate password. 
-    for (let i = options; i <  options.length; i++) {
-        let total = weights.numbers + weights.letters + weights.symbols;
-        let random = Math.random() * total;
-        let chosenType;
-        if (random < weights.numbers) {
-            chosenType = 'numbers';
-        } else if ( random < weights.numbers + weights.letters) {
-            chosenType = 'letters';
-        } else {
-            chosenType = 'Symbols';
+    for (let i = 0; i <  options.length; i++) {
+        // start with no chosen type
+        let chosenType = null;
+
+        // loop till the chosen type is picked
+        while (!chosenType) {
+            // each loop pick a random number between 0 and 1
+            let random = Math.random();
+
+            // if the number is less than 0.3 then try to generate a number
+            if (random < 0.3) {
+                // if we didn't pick numbers, loop and try again
+                if (!options.numbers) {
+                    continue;
+                }
+                chosenType = 'numbers';
+            } else if (random < 0.6) {
+                if (!options.letters) {
+                    continue;
+                }
+                chosenType = 'letters';
+            } else {
+                if (!options.symbols) {
+                    continue;
+                }
+                chosenType = 'symbols';
+            }
         }
 
         if (chosenType === 'numbers') {
@@ -126,12 +138,6 @@ function generatePass() {
             const randomIndex = Math.floor(Math.random() * symbChars.length);
             password += symbChars[randomIndex];
         }
-
-        weights[chosenType] = 0; 
-        
-        if (options.numbers && chosenType !== 'numbers') weights.numbers++;
-        if (options.letters && chosenType !== 'letters') weights.letters++;
-        if (options.symbols && chosenType !== 'symbols') weights.symbols++;
     }
     
     console.log('Final password:', password);
