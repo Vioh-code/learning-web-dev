@@ -1,65 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Header: Headers in HTML are used to track, charcter encoding, mobile
-    responsiveness, browser tab info, Links to external files, and has options
-    like, page description for search engines, keywords, Author's name, and
-    sometimes java script files. But typically that is at the end.-->
     <head>
-        <!--Charset is used to set what characters are going to be used-->
         <meta charset="UTF-8">
-        <!--This line is used to make the webpage compatable with mobile and
-         tablet devices.  Viewport is the area of the webpage viewable on the
-         screen and under content we are telling the page to load the width of
-         the viewable area to match the devices width and set scale to 1.0-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Password Generator</title>
-        <!--Linking CSS file to HTML-->
+        <title>Vioh's Generator</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-    <!--Main Box in the center of the screen housing everything else.-->
-    <div class="container">
-        <h1>Password Generator</h1>
-            <h2>Choose Your Destiny</h2>
-            <div class = "drop-down">
-                <select  id="dropDown">
-                    <option selected>Select One</option>
-                    <option>Random Characters</option>
-                    <option>Passphrase</option>
+        <main>
+            <h1>Generator of Passwords</h1>
+            <form>
+                <select name="type" id="type" class="select">
+                    <option value="">Choose Wisely</option>
+                    <option value="password">Password</option>
+                    <option value="passphrase">Passphrase</option>
                 </select>
-            </div>
-            <!--Random Character Option-->
-            <div class="rand-char">
-                <label>Password Length <input type="text" min="8" max="64" value="12" id="passwordLength"></label>
-                <label><input type="checkbox" id="numRan">Numbers</label>
-                <label><input type="checkbox" id="letRan">Letters</label>
-                <label><input type="checkbox" id="symRan">Symbols</label>
-            <div class="password-display">
-                <input type="text" id="passwordOutput" readonly>
-                <br>
-                <button id="copyButton">Copy</button>
-            </div>
-            </div>
-            <!--Passphrase Option-->
-            <div class="pass-phra">
-                <label>How many words?
-                <select id="numbWords">
-                    <option>2</option>
-                    <option selected>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select></label>
-                <br>
-                <label>Include Numbers<input type="checkbox" id="passNum"></label>
-                <div class="password-display">
-                    <input type="text" id="passphraseOutput" readonly>
-                    <button id="passButton">Copy</button>
-                </div>
-            </div>
-        <!--Password Gen button-->
-        <button id="generateButton">Generate Password</button>
-    </div>
-        <!--This ties the external js file to the html.-->
+                <fieldset id= 'fieldCont' class="inputs hidden">
+                    <div id= 'numbCont' class="numbers hidden">
+                        <label for="numbers">Numbers</label>
+                        <input type="checkbox" id="numbers" name="numbers">
+                    </div>
+                    <div id = 'lettCont' class="letters hidden">
+                        <label for="letters">Letters</label>
+                        <input type="checkbox" id="letters" name="letters">
+                    </div>
+                    <div id= 'symbCont' class="symbols hidden">
+                        <label for="symbols">Symbols</label>
+                        <input type="checkbox" id="symbols" name="symbols">
+                    </div>
+                    <div id ='charCont' class="charLength hidden">
+                        <label for="charLength">Character Length</label>
+                        <input type="number" min="12" max="64" value="12" step="1" id="charLength" name="charLength">
+                    </div>
+                    <div id = 'phraCont' class="wordCount hidden">
+                        <label for="wordSlider">
+                            How many words?
+                        </label>
+                        <input type="range" min="2" max="10" value="2" id="wordSlider" name="wordSlider">
+                        <span id="wordCount">2</span>
+                    </div>
+                </fieldset>
+                <section id="copyCont" class="output hidden">
+                    <input type="text" class="passwordOutput" value="Keep it secret. Keep it safe." readonly>
+                    <button type="button" class="copyButton" id="copyButton">Copy</button>
+                </section>
+                <section id="genCont" class="genButton hidden">
+                    <button type=button id="submit">Generate Password</button>
+                </section>
+            </form>
+        </main>
         <script src="script.js"></script>
     </body>
 </html>
