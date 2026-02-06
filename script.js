@@ -98,43 +98,29 @@ submit.addEventListener('click', function() {
 function generatePass() {
     const options = getOptions();
     let password = '';
-    // for loop to generate password. 
-    for (let i = 0; i <  options.length; i++) {
-        // start with no chosen type
-        let chosenType = null;
+    // loop till the password is filled
+    while (password.length < options.length) {
+        // each loop pick a random number between 0 and 1
+        let random = Math.random();
 
-        // loop till the chosen type is picked
-        while (!chosenType) {
-            // each loop pick a random number between 0 and 1
-            let random = Math.random();
-
-            // if the number is less than 0.3 then try to generate a number
-            if (random < 0.3) {
-                // if we didn't pick numbers, loop and try again
-                if (!options.numbers) {
-                    continue;
-                }
-                chosenType = 'numbers';
-            } else if (random < 0.6) {
-                if (!options.letters) {
-                    continue;
-                }
-                chosenType = 'letters';
-            } else {
-                if (!options.symbols) {
-                    continue;
-                }
-                chosenType = 'symbols';
+        // if the number is less than 0.3 then try to generate a number
+        if (random < 0.3) {
+            // if we didn't pick numbers, loop and try again
+            if (!options.numbers) {
+                continue;
             }
-        }
-
-        if (chosenType === 'numbers') {
             const randomIndex = Math.floor(Math.random() * numbChars.length);
             password += numbChars[randomIndex];
-        } else if (chosenType === 'letters') {
+        } else if (random < 0.6) {
+            if (!options.letters) {
+                continue;
+            }
             const randomIndex = Math.floor(Math.random() * lettChars.length);
             password += lettChars[randomIndex];
-        } else if (chosenType === 'symbols') {
+        } else {
+            if (!options.symbols) {
+                continue;
+            }
             const randomIndex = Math.floor(Math.random() * symbChars.length);
             password += symbChars[randomIndex];
         }
