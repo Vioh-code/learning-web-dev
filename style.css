@@ -5,16 +5,17 @@ body {
 
 main {
     max-width: 500px;
-    margin: 50px auto;
+    margin: 1rem auto;
     background: linear-gradient(to bottom, olivedrab, white);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-bottom: 1rem;
 }
 
 h1, h2 {
     text-align: center;
     font-family: Verdana, sans-serif;
-    margin: 0;
+    margin: 1rem;
     border: none;
     width: auto;
     color: white;
@@ -22,6 +23,7 @@ h1, h2 {
 
 h1 {
     border-radius: 0.75rem 0.75rem 0 0;
+    padding-top: 1rem;
 }
 
 h2 {
