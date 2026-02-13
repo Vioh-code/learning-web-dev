@@ -1,5 +1,6 @@
 const wordSlider = document.getElementById('wordSlider');
 const wordCount = document.getElementById('wordCount');
+const copyButton = document.getElementById('copyButton');
 const type = document.getElementById('type');
 const numbCont = document.getElementById( 'numbCont');
 const lettCont = document.getElementById('lettCont');
@@ -17,6 +18,10 @@ const symbols = document.getElementById('symbols');
 const lettChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 const numbChars = '0123456789';
 const symbChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+const wordBank = ['Apple', 'beach', 'Chair', 'dance', 'Eagle',
+    'flame', 'Grape', 'House', 'island', 'Jungle',
+    'Knife', 'lemon', 'mountain', 'Night', 'ocean',
+    'piano', 'quick', 'River', 'storm', 'Tiger'];
 
 //Settings Grouped together based on selection from dropdown
 const elementVis = {
@@ -27,20 +32,6 @@ const elementVis = {
 //All settings are listed here so that we can show or hide them based on
 //selection of drop down.
 const allOptions =  [genCont, copyCont, fieldCont, numbCont, lettCont, symbCont, charCont, phraCont];
-
-//Function to watch drop down and update the elements classes with "hidden"
-//based on selection made to only show the applicable options.
-type.addEventListener('change', function () {
-    allOptions.forEach(vis => vis.classList.add('hidden'));
-
-    const toShow = elementVis[type.value];
-    toShow.forEach(vis => vis.classList.remove('hidden'));
-});
-
-//Update the displayed number based on the slider value to make it interactive. 
-wordSlider.addEventListener('input', function() {
-    wordCount.textContent = wordSlider.value;
-});
 
 //getOptions is used to check all of the options that have been selected after
 //the drop down has been selected. 
@@ -78,23 +69,6 @@ function getOptions() {
     };
 };
 
-// Generate button test for options output.
-submit.addEventListener('click', function() {
-    const options = getOptions();
-    //checks for errors first and returns if found. Ending the function there.
-    if (options.error) {
-        alert(options.error);
-        //if no errors are found, then it will output the options selected.
-    } else {
-        console.log('Valid options:', options);
-        // get the password text box
-        const input = document.querySelector('.passwordOutput');
-        // update it's value with a new generated password
-        input.value = generatePass();
-    }
-});
-
-
 function generatePass() {
     const options = getOptions();
     let password = '';
@@ -126,6 +100,100 @@ function generatePass() {
         }
     }
     
-    console.log('Final password:', password);
     return password;
 };
+
+function genPhrase() {
+    let length = wordSlider.value;
+    let selectedWords = [];
+    
+    // Get separator characters based on selected options
+    let separators = [];
+    if (numbers.checked) separators.push('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    if (symbols.checked) separators.push('!', '@', '#', '$', '%', '&', '*', '-', '_');
+    
+    // Select unique words
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * wordBank.length);
+        const word = wordBank[randomIndex];
+        
+        if (selectedWords.includes(word)) {
+            i--;
+        } else {
+            selectedWords.push(word);
+        }
+    }
+    
+    // Join words with random separators
+    let passphrase = '';
+    for (let i = 0; i < selectedWords.length; i++) {
+        passphrase += selectedWords[i];
+        // Add separator between words (but not after the last word)
+        if (i < selectedWords.length - 1) {
+            const randomSep = separators[Math.floor(Math.random() * separators.length)];
+            passphrase += randomSep;
+        }
+    }
+    
+    return passphrase;
+}
+
+// Generate button test for options output.
+submit.addEventListener('click', function() {
+    const options = getOptions();
+    //checks for errors first and returns if found. Ending the function there.
+    if (options.error) {
+        alert(options.error);
+        //if no errors are found, then it will output the options selected.
+    } else {
+        // get the password text box
+        const input = document.querySelector('.passwordOutput');
+        
+        // Check type and run appropriate generator
+        if (options.type === 'password') {
+            input.value = generatePass();
+        } else if (options.type === 'passphrase') {
+            input.value = genPhrase();
+        }
+    }
+});
+
+// Clear output and reset options when switching between password/passphrase
+type.addEventListener('change', function() {
+    // Clear the password output
+    const input = document.querySelector('.passwordOutput');
+    input.value = 'Keep it Secret. Keep it safe';
+    
+    // Uncheck all checkboxes
+    numbers.checked = false;
+    letters.checked = false;
+    symbols.checked = false;
+});
+
+//Function to watch drop down and update the elements classes with "hidden"
+//based on selection made to only show the applicable options.
+type.addEventListener('change', function () {
+    allOptions.forEach(vis => vis.classList.add('hidden'));
+
+    const toShow = elementVis[type.value];
+    toShow.forEach(vis => vis.classList.remove('hidden'));
+});
+
+copyButton.addEventListener('click', function() {
+    const input = document.querySelector('.passwordOutput');
+    
+    navigator.clipboard.writeText(input.value).then(function() {
+        const originalText = copyButton.textContent;
+        copyButton.textContent = 'Copied!';
+        setTimeout(() => {
+            copyButton.textContent = originalText;
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Failed to copy:', err);
+    });
+});
+
+//Update the displayed number based on the slider value to make it interactive. 
+wordSlider.addEventListener('input', function() {
+    wordCount.textContent = wordSlider.value;
+});
